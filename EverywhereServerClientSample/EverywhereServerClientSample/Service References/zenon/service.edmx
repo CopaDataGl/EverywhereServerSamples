@@ -1,0 +1,251 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
+    <Schema Namespace="Everywhere.Service.Data" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2007/05/edm">
+      <EntityType Name="ZenonOnlineVariable">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Status" Type="Edm.Int64" Nullable="false" />
+        <Property Name="Timestamp" Type="Edm.Int64" Nullable="false" />
+        <Property Name="Value" Type="Edm.String" Nullable="true" />
+        <Property Name="Cookie" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="Variable" Relationship="Everywhere.Service.Data.ZenonOnlineVariable_Variable" FromRole="ZenonOnlineVariable" ToRole="Variable" />
+      </EntityType>
+      <EntityType Name="ZenonArchiveValue">
+        <Key>
+          <PropertyRef Name="ArchiveId" />
+          <PropertyRef Name="Timestamp" />
+          <PropertyRef Name="Type" />
+          <PropertyRef Name="VariableId" />
+        </Key>
+        <Property Name="Type" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Value" Type="Edm.String" Nullable="true" />
+        <Property Name="Status" Type="Edm.Int64" Nullable="false" />
+        <Property Name="Timestamp" Type="Edm.Int64" Nullable="false" />
+        <Property Name="VariableName" Type="Edm.String" Nullable="true" />
+        <Property Name="VariableId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ArchiveId" Type="Edm.String" Nullable="false" />
+      </EntityType>
+      <EntityType Name="ZenonArchive">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <NavigationProperty Name="Values" Relationship="Everywhere.Service.Data.ZenonArchive_Values" FromRole="ZenonArchive" ToRole="Values" />
+        <Property Name="Id" Type="Edm.String" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="true" />
+      </EntityType>
+      <EntityType Name="ZenonEvent">
+        <Key>
+          <PropertyRef Name="Id" />
+          <PropertyRef Name="TimeReceived" />
+        </Key>
+        <Property Name="VariableStatus" Type="Edm.Int64" Nullable="false" />
+        <Property Name="Value" Type="Edm.Double" Nullable="false" />
+        <NavigationProperty Name="AlarmClass" Relationship="Everywhere.Service.Data.ZenonEvent_AlarmClass" FromRole="ZenonEvent" ToRole="AlarmClass" />
+        <NavigationProperty Name="AlarmGroup" Relationship="Everywhere.Service.Data.ZenonEvent_AlarmGroup" FromRole="ZenonEvent" ToRole="AlarmGroup" />
+        <Property Name="UserId" Type="Edm.String" Nullable="true" />
+        <Property Name="TimeReceived" Type="Edm.Int64" Nullable="false" />
+        <Property Name="ComputerName" Type="Edm.String" Nullable="true" />
+        <Property Name="Comment" Type="Edm.String" Nullable="true" />
+        <Property Name="Text" Type="Edm.String" Nullable="true" />
+        <NavigationProperty Name="Variable" Relationship="Everywhere.Service.Data.ZenonEvent_Variable" FromRole="ZenonEvent" ToRole="Variable" />
+        <Property Name="Cookie" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+      </EntityType>
+      <EntityType Name="ZenonAlarm">
+        <Key>
+          <PropertyRef Name="Id" />
+          <PropertyRef Name="TimeReceived" />
+        </Key>
+        <Property Name="Deleted" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Acknowledged" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="VariableStatus" Type="Edm.Int64" Nullable="false" />
+        <Property Name="Value" Type="Edm.Double" Nullable="false" />
+        <NavigationProperty Name="AlarmClass" Relationship="Everywhere.Service.Data.ZenonAlarm_AlarmClass" FromRole="ZenonAlarm" ToRole="AlarmClass" />
+        <NavigationProperty Name="AlarmGroup" Relationship="Everywhere.Service.Data.ZenonAlarm_AlarmGroup" FromRole="ZenonAlarm" ToRole="AlarmGroup" />
+        <Property Name="UserId" Type="Edm.String" Nullable="true" />
+        <Property Name="ReactivateNumber" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ReactivateStatus" Type="Edm.Int64" Nullable="false" />
+        <Property Name="ReactivateTime" Type="Edm.Int64" Nullable="false" />
+        <Property Name="TimeAcknowledged" Type="Edm.Int64" Nullable="false" />
+        <Property Name="TimeCleared" Type="Edm.Int64" Nullable="false" />
+        <Property Name="TimeReceived" Type="Edm.Int64" Nullable="false" />
+        <Property Name="ComputerName" Type="Edm.String" Nullable="true" />
+        <Property Name="Comment" Type="Edm.String" Nullable="true" />
+        <Property Name="Text" Type="Edm.String" Nullable="true" />
+        <NavigationProperty Name="Variable" Relationship="Everywhere.Service.Data.ZenonAlarm_Variable" FromRole="ZenonAlarm" ToRole="Variable" />
+        <Property Name="AlarmStatus" Type="Edm.Int64" Nullable="false" />
+        <Property Name="Cookie" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+      </EntityType>
+      <EntityType Name="ZenonVariable">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="EquipmentGroupGuids" Type="Edm.String" Nullable="true" />
+        <Property Name="MinimumValue" Type="Edm.Double" Nullable="false" />
+        <Property Name="MaximumValue" Type="Edm.Double" Nullable="false" />
+        <Property Name="Unit" Type="Edm.String" Nullable="true" />
+        <Property Name="ResourcesLabel" Type="Edm.String" Nullable="true" />
+        <Property Name="Identification" Type="Edm.String" Nullable="true" />
+        <Property Name="Name" Type="Edm.String" Nullable="true" />
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+      </EntityType>
+      <EntityType Name="ZenonAlarmClass">
+        <Key>
+          <PropertyRef Name="Number" />
+        </Key>
+        <Property Name="EquipmentGroupGuids" Type="Edm.String" Nullable="true" />
+        <Property Name="Description" Type="Edm.String" Nullable="true" />
+        <Property Name="Number" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="true" />
+      </EntityType>
+      <EntityType Name="ZenonAlarmGroup">
+        <Key>
+          <PropertyRef Name="Number" />
+        </Key>
+        <Property Name="EquipmentGroupGuids" Type="Edm.String" Nullable="true" />
+        <Property Name="Description" Type="Edm.String" Nullable="true" />
+        <Property Name="Number" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="true" />
+      </EntityType>
+      <EntityType Name="ZenonEquipmentGroup">
+        <Key>
+          <PropertyRef Name="Guid" />
+        </Key>
+        <NavigationProperty Name="Model" Relationship="Everywhere.Service.Data.ZenonEquipmentGroup_Model" FromRole="ZenonEquipmentGroup" ToRole="Model" />
+        <NavigationProperty Name="ParentGroup" Relationship="Everywhere.Service.Data.ZenonEquipmentGroup_ParentGroup" FromRole="ZenonEquipmentGroup" ToRole="ParentGroup" />
+        <NavigationProperty Name="ChildGroups" Relationship="Everywhere.Service.Data.ZenonEquipmentGroup_ChildGroups" FromRole="ZenonEquipmentGroup" ToRole="ChildGroups" />
+        <Property Name="Guid" Type="Edm.String" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="true" />
+      </EntityType>
+      <EntityType Name="ZenonEquipmentModel">
+        <Key>
+          <PropertyRef Name="Guid" />
+        </Key>
+        <NavigationProperty Name="EquipmentGroups" Relationship="Everywhere.Service.Data.ZenonEquipmentModel_EquipmentGroups" FromRole="ZenonEquipmentModel" ToRole="EquipmentGroups" />
+        <Property Name="Guid" Type="Edm.String" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="true" />
+      </EntityType>
+      <Association Name="ZenonOnlineVariable_Variable">
+        <End Role="ZenonOnlineVariable" Type="Everywhere.Service.Data.ZenonOnlineVariable" Multiplicity="*" />
+        <End Role="Variable" Type="Everywhere.Service.Data.ZenonVariable" Multiplicity="0..1" />
+      </Association>
+      <Association Name="ZenonArchive_Values">
+        <End Role="ZenonArchive" Type="Everywhere.Service.Data.ZenonArchive" Multiplicity="*" />
+        <End Role="Values" Type="Everywhere.Service.Data.ZenonArchiveValue" Multiplicity="*" />
+      </Association>
+      <Association Name="ZenonEvent_AlarmClass">
+        <End Role="ZenonEvent" Type="Everywhere.Service.Data.ZenonEvent" Multiplicity="*" />
+        <End Role="AlarmClass" Type="Everywhere.Service.Data.ZenonAlarmClass" Multiplicity="0..1" />
+      </Association>
+      <Association Name="ZenonEvent_AlarmGroup">
+        <End Role="ZenonEvent" Type="Everywhere.Service.Data.ZenonEvent" Multiplicity="*" />
+        <End Role="AlarmGroup" Type="Everywhere.Service.Data.ZenonAlarmGroup" Multiplicity="0..1" />
+      </Association>
+      <Association Name="ZenonEvent_Variable">
+        <End Role="ZenonEvent" Type="Everywhere.Service.Data.ZenonEvent" Multiplicity="*" />
+        <End Role="Variable" Type="Everywhere.Service.Data.ZenonVariable" Multiplicity="0..1" />
+      </Association>
+      <Association Name="ZenonAlarm_AlarmClass">
+        <End Role="ZenonAlarm" Type="Everywhere.Service.Data.ZenonAlarm" Multiplicity="*" />
+        <End Role="AlarmClass" Type="Everywhere.Service.Data.ZenonAlarmClass" Multiplicity="0..1" />
+      </Association>
+      <Association Name="ZenonAlarm_AlarmGroup">
+        <End Role="ZenonAlarm" Type="Everywhere.Service.Data.ZenonAlarm" Multiplicity="*" />
+        <End Role="AlarmGroup" Type="Everywhere.Service.Data.ZenonAlarmGroup" Multiplicity="0..1" />
+      </Association>
+      <Association Name="ZenonAlarm_Variable">
+        <End Role="ZenonAlarm" Type="Everywhere.Service.Data.ZenonAlarm" Multiplicity="*" />
+        <End Role="Variable" Type="Everywhere.Service.Data.ZenonVariable" Multiplicity="0..1" />
+      </Association>
+      <Association Name="ZenonEquipmentGroup_Model">
+        <End Role="ZenonEquipmentGroup" Type="Everywhere.Service.Data.ZenonEquipmentGroup" Multiplicity="*" />
+        <End Role="Model" Type="Everywhere.Service.Data.ZenonEquipmentModel" Multiplicity="0..1" />
+      </Association>
+      <Association Name="ZenonEquipmentGroup_ParentGroup">
+        <End Role="ZenonEquipmentGroup" Type="Everywhere.Service.Data.ZenonEquipmentGroup" Multiplicity="*" />
+        <End Role="ParentGroup" Type="Everywhere.Service.Data.ZenonEquipmentGroup" Multiplicity="0..1" />
+      </Association>
+      <Association Name="ZenonEquipmentGroup_ChildGroups">
+        <End Role="ZenonEquipmentGroup" Type="Everywhere.Service.Data.ZenonEquipmentGroup" Multiplicity="*" />
+        <End Role="ChildGroups" Type="Everywhere.Service.Data.ZenonEquipmentGroup" Multiplicity="*" />
+      </Association>
+      <Association Name="ZenonEquipmentModel_EquipmentGroups">
+        <End Role="ZenonEquipmentModel" Type="Everywhere.Service.Data.ZenonEquipmentModel" Multiplicity="*" />
+        <End Role="EquipmentGroups" Type="Everywhere.Service.Data.ZenonEquipmentGroup" Multiplicity="*" />
+      </Association>
+      <EntityContainer Name="ZenonDataModel" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="OnlineVariables" EntityType="Everywhere.Service.Data.ZenonOnlineVariable" />
+        <EntitySet Name="ArchiveValues" EntityType="Everywhere.Service.Data.ZenonArchiveValue" />
+        <EntitySet Name="Archives" EntityType="Everywhere.Service.Data.ZenonArchive" />
+        <EntitySet Name="CEL" EntityType="Everywhere.Service.Data.ZenonEvent" />
+        <EntitySet Name="Alarms" EntityType="Everywhere.Service.Data.ZenonAlarm" />
+        <EntitySet Name="Variables" EntityType="Everywhere.Service.Data.ZenonVariable" />
+        <EntitySet Name="AlarmClasses" EntityType="Everywhere.Service.Data.ZenonAlarmClass" />
+        <EntitySet Name="AlarmGroups" EntityType="Everywhere.Service.Data.ZenonAlarmGroup" />
+        <EntitySet Name="EquipmentGroups" EntityType="Everywhere.Service.Data.ZenonEquipmentGroup" />
+        <EntitySet Name="EquipmentModels" EntityType="Everywhere.Service.Data.ZenonEquipmentModel" />
+        <AssociationSet Name="ZenonOnlineVariable_Variable" Association="Everywhere.Service.Data.ZenonOnlineVariable_Variable">
+          <End Role="ZenonOnlineVariable" EntitySet="OnlineVariables" />
+          <End Role="Variable" EntitySet="Variables" />
+        </AssociationSet>
+        <AssociationSet Name="ZenonArchive_Values" Association="Everywhere.Service.Data.ZenonArchive_Values">
+          <End Role="ZenonArchive" EntitySet="Archives" />
+          <End Role="Values" EntitySet="ArchiveValues" />
+        </AssociationSet>
+        <AssociationSet Name="ZenonEvent_AlarmClass" Association="Everywhere.Service.Data.ZenonEvent_AlarmClass">
+          <End Role="ZenonEvent" EntitySet="CEL" />
+          <End Role="AlarmClass" EntitySet="AlarmClasses" />
+        </AssociationSet>
+        <AssociationSet Name="ZenonEvent_AlarmGroup" Association="Everywhere.Service.Data.ZenonEvent_AlarmGroup">
+          <End Role="ZenonEvent" EntitySet="CEL" />
+          <End Role="AlarmGroup" EntitySet="AlarmGroups" />
+        </AssociationSet>
+        <AssociationSet Name="ZenonEvent_Variable" Association="Everywhere.Service.Data.ZenonEvent_Variable">
+          <End Role="ZenonEvent" EntitySet="CEL" />
+          <End Role="Variable" EntitySet="Variables" />
+        </AssociationSet>
+        <AssociationSet Name="ZenonAlarm_AlarmClass" Association="Everywhere.Service.Data.ZenonAlarm_AlarmClass">
+          <End Role="ZenonAlarm" EntitySet="Alarms" />
+          <End Role="AlarmClass" EntitySet="AlarmClasses" />
+        </AssociationSet>
+        <AssociationSet Name="ZenonAlarm_AlarmGroup" Association="Everywhere.Service.Data.ZenonAlarm_AlarmGroup">
+          <End Role="ZenonAlarm" EntitySet="Alarms" />
+          <End Role="AlarmGroup" EntitySet="AlarmGroups" />
+        </AssociationSet>
+        <AssociationSet Name="ZenonAlarm_Variable" Association="Everywhere.Service.Data.ZenonAlarm_Variable">
+          <End Role="ZenonAlarm" EntitySet="Alarms" />
+          <End Role="Variable" EntitySet="Variables" />
+        </AssociationSet>
+        <AssociationSet Name="ZenonEquipmentGroup_Model" Association="Everywhere.Service.Data.ZenonEquipmentGroup_Model">
+          <End Role="ZenonEquipmentGroup" EntitySet="EquipmentGroups" />
+          <End Role="Model" EntitySet="EquipmentModels" />
+        </AssociationSet>
+        <AssociationSet Name="ZenonEquipmentGroup_ParentGroup" Association="Everywhere.Service.Data.ZenonEquipmentGroup_ParentGroup">
+          <End Role="ZenonEquipmentGroup" EntitySet="EquipmentGroups" />
+          <End Role="ParentGroup" EntitySet="EquipmentGroups" />
+        </AssociationSet>
+        <AssociationSet Name="ZenonEquipmentGroup_ChildGroups" Association="Everywhere.Service.Data.ZenonEquipmentGroup_ChildGroups">
+          <End Role="ZenonEquipmentGroup" EntitySet="EquipmentGroups" />
+          <End Role="ChildGroups" EntitySet="EquipmentGroups" />
+        </AssociationSet>
+        <AssociationSet Name="ZenonEquipmentModel_EquipmentGroups" Association="Everywhere.Service.Data.ZenonEquipmentModel_EquipmentGroups">
+          <End Role="ZenonEquipmentModel" EntitySet="EquipmentModels" />
+          <End Role="EquipmentGroups" EntitySet="EquipmentGroups" />
+        </AssociationSet>
+        <FunctionImport Name="Invalidate" m:HttpMethod="POST" />
+        <FunctionImport Name="UpdatedOnlineVariables" EntitySet="OnlineVariables" ReturnType="Collection(Everywhere.Service.Data.ZenonOnlineVariable)" m:HttpMethod="GET">
+          <Parameter Name="cookie" Type="Edm.Int32" Mode="In" />
+        </FunctionImport>
+        <FunctionImport Name="UpdatedAlarms" EntitySet="Alarms" ReturnType="Collection(Everywhere.Service.Data.ZenonAlarm)" m:HttpMethod="GET">
+          <Parameter Name="cookie" Type="Edm.Int32" Mode="In" />
+        </FunctionImport>
+        <FunctionImport Name="UpdatedEvents" EntitySet="CEL" ReturnType="Collection(Everywhere.Service.Data.ZenonEvent)" m:HttpMethod="GET">
+          <Parameter Name="cookie" Type="Edm.Int32" Mode="In" />
+        </FunctionImport>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
